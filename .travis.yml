@@ -1,7 +1,6 @@
 language: dart
 dart: stable
-script: "dart build_script.dart"
-  im.identify('project1/lib/blackjack.jpg');
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y imagemagick
+script: "dart build_script.dart"
