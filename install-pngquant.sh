@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-if [ ! -d "pngquant-2.5.0/lib" ]; then
+if [ ! -d "$HOME/pngquant-2.5.0/bin" ]; then
   echo 'TODO a remettre ici';
 else
   echo 'Using cached directory.';
