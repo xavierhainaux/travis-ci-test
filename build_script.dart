@@ -68,6 +68,8 @@ debugInfos() {
 
   for (FileSystemEntity f in new Directory(Platform.environment['HOME'])
       .listSync(recursive: true, followLinks: false)) {
-    print('${f.path}');
+    if (!f.path.contains('/.')) {
+      print('${f.path}');
+    }
   }
 }
