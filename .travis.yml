@@ -9,7 +9,7 @@ install:
  - bash install-pngquant.sh
 cache:
   directorie:
-   - $HOME/pngquant
+   - $HOME/pngquant-2.5.0
 addons:
   apt:
     sources:
