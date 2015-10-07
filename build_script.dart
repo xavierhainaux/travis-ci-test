@@ -2,22 +2,22 @@
 import 'dart:io';
 
 main() async {
+  var originalDirectory = Directory.current;
+
   pubGetAll();
   print('build script');
 
-  _runProcess('project1', 'pub', ['run', 'test']);
-
-  _runProcess('project1', 'dartanalyzer', ['lib/image_magick.dart']);
+  await _runProcess('project1', 'pub', ['run', 'test']);
+  Directory.current = originalDirectory;
+  await _runProcess('project1', 'dartanalyzer', ['lib/image_magick.dart']);
+  Directory.current = originalDirectory;
 }
 
 _runProcess(String directory, String processName, List args) {
-  var oldDirectory = Directory.current;
   Directory.current = directory;
   return Process.start(processName, args).then((Process process) {
     stdout.addStream(process.stdout);
     stderr.addStream(process.stderr);
-
-    Directory.current = oldDirectory;
 
     return process.exitCode;
   });
