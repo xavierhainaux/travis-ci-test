@@ -8,7 +8,7 @@ script: "dart build_script.dart"
 install:
  - bash install-pngquant.sh
 cache:
-  directorie:
+  directories:
    - $HOME/pngquant-2.5.0
 addons:
   apt:
