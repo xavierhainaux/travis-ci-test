@@ -15,7 +15,7 @@ main() {
   });
 
   test('pngquant', () {
-    ProcessResult result = Process.runSync('pngquant', ['lib/blackjack.png']);
+    ProcessResult result = Process.runSync('/home/travis/pngquant-2.5.0/bin/pngquant', ['lib/blackjack.png']);
     print(result.stderr);
     print(result.stdout);
   });
