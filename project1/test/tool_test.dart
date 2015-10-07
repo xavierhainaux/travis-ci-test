@@ -16,7 +16,7 @@ main() {
 
   test('pngquant', () async {
     ///home/travis/pngquant-2.5.0/bin/
-    Process process = await Process.start(Platform.environment['PNGQUANT'], ['lib/blackjack.png'], runInShell: true);
+    Process process = await Process.start('pngquant', ['lib/blackjack.png'], runInShell: true);
     stdout.addStream(process.stdout);
     stderr.addStream(process.stderr);
     //print(result.stderr);

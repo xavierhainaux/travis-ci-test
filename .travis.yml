@@ -7,7 +7,7 @@ sudo: false
 script: "dart build_script.dart"
 install:
  - bash install-pngquant.sh
- - export PNGQUANT=$HOME/pngquant-2.5.0/bin/pngquant
+ - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
 cache:
   directories:
    - $HOME/pngquant-2.5.0
