@@ -7,4 +7,3 @@ if [ ! -d "$HOME/pngquant-2.5.0/bin" ]; then
 else
   echo 'Using cached directory.';
 fi
-export PNGQUANT=$HOME/pngquant-2.5.0/bin/pngquant
