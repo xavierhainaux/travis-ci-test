@@ -19,7 +19,9 @@ _runProcess(String directory, String processName, List args) {
 }
 
 pubGetAll() {
+  var originalDir = Directory.current;
   visitDirectory(Directory.current);
+  Directory.current = originalDir;
 }
 
 visitDirectory(Directory directory) {
