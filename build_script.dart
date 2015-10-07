@@ -11,10 +11,13 @@ main() async {
 }
 
 _runProcess(String directory, String processName, List args) {
+  var oldDirectory = Directory.current;
   Directory.current = directory;
   return Process.start(processName, args).then((Process process) {
     stdout.addStream(process.stdout);
     stderr.addStream(process.stderr);
+
+    Directory.current = oldDirectory;
 
     return process.exitCode;
   });
