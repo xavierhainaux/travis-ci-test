@@ -1,6 +1,16 @@
 language: dart
 dart: stable
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y imagemagick
+sudo: false
+#before_install:
+#  - sudo apt-get update -qq
+#  - sudo apt-get install -y imagemagick
 script: "dart build_script.dart"
+addons:
+  apt:
+    sources:
+    - deadsnakes
+    - ubuntu-toolchain-r-test
+addons:
+  apt:
+    packages:
+    - imagemagick
