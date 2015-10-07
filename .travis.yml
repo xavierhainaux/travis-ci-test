@@ -20,4 +20,4 @@ addons:
     packages:
     - imagemagick
     - sox
-    - libsox-fmt-mp3
+    - libsox-fmt-all
