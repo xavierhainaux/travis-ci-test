@@ -4,9 +4,12 @@ import 'dart:io';
 main() async {
   pubGetAll();
   print('build script');
+
+  _runProcess('project1', 'pub', ['run', 'test']);
 }
 
-_runProcess(String processName, List args) {
+_runProcess(String directory, String processName, List args) {
+  Directory.current = directory;
   return Process.start(processName, args).then((Process process) {
     stdout.addStream(process.stdout);
     stderr.addStream(process.stderr);
