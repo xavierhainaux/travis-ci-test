@@ -14,10 +14,13 @@ main() {
     expect(imageInfo.width, equals(301));
   });
 
-  test('pngquant', () {
+  test('pngquant', () async {
     ///home/travis/pngquant-2.5.0/bin/
-    ProcessResult result = Process.runSync('pngquant', ['lib/blackjack.png']);
-    print(result.stderr);
-    print(result.stdout);
+    Process process = await Process.start('pngquant', ['lib/blackjack.png']);
+    stdout.addStream(process.stdout);
+    stderr.addStream(process.stderr);
+    //print(result.stderr);
+    //print(result.stdout);
+    return process.exitCode;
   });
 }

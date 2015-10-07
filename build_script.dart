@@ -1,7 +1,7 @@
 import 'dart:io';
 
 main() async {
-  debugInfos();
+  //debugInfos();
 
   var originalDirectory = Directory.current;
 
