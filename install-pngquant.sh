@@ -7,5 +7,5 @@ else
 fi
 wget https://github.com/pornel/pngquant/archive/2.5.0.tar.gz -O pngquant.tar.gz
 tar -xzvf pngquant.tar.gz
-cd pngquant-2.5.0 && make && make install
+cd pngquant-2.5.0 && make
 export PATH=$PATH:pngquant-2.5.0
