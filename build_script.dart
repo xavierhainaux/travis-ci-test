@@ -6,6 +6,8 @@ main() async {
   print('build script');
 
   _runProcess('project1', 'pub', ['run', 'test']);
+
+  _runProcess('project1', 'dartanalyzer', ['lib/image_magick.dart']);
 }
 
 _runProcess(String directory, String processName, List args) {
