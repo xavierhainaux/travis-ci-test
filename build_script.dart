@@ -1,7 +1,8 @@
-
 import 'dart:io';
 
 main() async {
+  debugInfos();
+
   var originalDirectory = Directory.current;
 
   pubGetAll();
@@ -36,7 +37,7 @@ visitDirectory(Directory directory) {
     runPubGet();
   } else {
     for (Directory subDirectory
-    in directory.listSync().where((f) => f is Directory)) {
+        in directory.listSync().where((f) => f is Directory)) {
       visitDirectory(subDirectory);
     }
   }
@@ -58,5 +59,15 @@ String get pubPath {
     return 'pub.bat';
   } else {
     return 'pub';
+  }
+}
+
+debugInfos() {
+  print('home: ' + Platform.environment['HOME']);
+  print('current: ${Directory.current.path}');
+
+  for (FileSystemEntity f in new Directory(Platform.environment['HOME'])
+      .listSync(recursive: true, followLinks: false)) {
+    print('${f.path}');
   }
 }
