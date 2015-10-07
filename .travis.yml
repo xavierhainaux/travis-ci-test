@@ -5,6 +5,11 @@ sudo: false
 #  - sudo apt-get update -qq
 #  - sudo apt-get install -y imagemagick
 script: "dart build_script.dart"
+install:
+ - bash install-pngquant.sh
+cache:
+  directorie:
+   - $HOME/pngquant
 addons:
   apt:
     sources:
