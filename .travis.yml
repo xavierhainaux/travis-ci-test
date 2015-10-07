@@ -14,3 +14,4 @@ addons:
   apt:
     packages:
     - imagemagick
+    - sox libsox-fmt-mp3
