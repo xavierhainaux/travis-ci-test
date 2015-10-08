@@ -1,7 +1,7 @@
 import 'dart:io';
 
 main() async {
-  //debugInfos();
+  debugInfos();
 
   var originalDirectory = Directory.current;
 
@@ -68,7 +68,7 @@ debugInfos() {
 
   for (FileSystemEntity f in new Directory(Platform.environment['HOME'])
       .listSync(recursive: true, followLinks: false)) {
-    if (!f.path.contains('/.')) {
+    if (!f.path.contains('/.') && !f.path.contains('dart-sdk/')) {
       print('${f.path}');
     }
   }

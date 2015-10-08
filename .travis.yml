@@ -8,9 +8,12 @@ script: "dart build_script.dart"
 install:
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
+ - bash install-ttf2woff.sh
+ - export PATH=$PATH:$HOME/ttf2woff-0.12
 cache:
   directories:
    - $HOME/pngquant-2.5.0
+   - $HOME/ttf2woff
 addons:
   apt:
     sources:
@@ -22,3 +25,4 @@ addons:
     - imagemagick
     - sox
     - libsox-fmt-all
+    - ffmpeg
