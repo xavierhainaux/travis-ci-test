@@ -1,5 +1,6 @@
 language: dart
 dart: stable
+ghc: 7.8
 sudo: false
 #before_install:
 #  - sudo apt-get update -qq
