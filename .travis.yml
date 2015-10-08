@@ -8,10 +8,10 @@ script: "dart build_script.dart"
 install:
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
-# - bash install-ttf2woff.sh
-# - export PATH=$PATH:$TRAVIS_BUILD_DIR/ttf2woff-0.12
- - bash install-woff2.sh
- - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
+ - bash install-ttf2woff.sh
+ - export PATH=$PATH:$TRAVIS_BUILD_DIR/ttf2woff-0.12
+# - bash install-woff2.sh
+# - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
  - cabal install webify
 cache:
   directories:
