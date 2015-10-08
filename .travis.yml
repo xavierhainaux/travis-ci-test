@@ -32,3 +32,4 @@ addons:
     - libsox-fmt-all
     - ffmpeg
     - optipng
+    - pngquant
