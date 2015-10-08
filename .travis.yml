@@ -10,8 +10,8 @@ install:
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
  - bash install-ttf2woff.sh
  - export PATH=$PATH:$TRAVIS_BUILD_DIR/ttf2woff-0.12
- - bash install-woff2.sh
- - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
+# - bash install-woff2.sh
+# - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
 # - cabal install webify
 cache:
   directories:
@@ -25,12 +25,11 @@ addons:
 addons:
   apt:
     packages:
-    - imagemagick
+    - imagemagick=6.9.2
     - sox
     - libsox-fmt-all
     - ffmpeg
     - optipng
-    - g++
 
 #TODO(xha): reste
 # webify (ou utiliser ttf2woff mais alors il faut aussi rajouter une version windows)
