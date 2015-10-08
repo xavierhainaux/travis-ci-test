@@ -10,15 +10,13 @@ install:
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
  - bash install-ttf2woff.sh
  - export PATH=$PATH:$TRAVIS_BUILD_DIR/ttf2woff-0.12
-# - bash install-optipng.sh
-# - export PATH=$PATH:$TRAVIS_BUILD_DIR/optipng-0.7.5
-# - bash install-woff2.sh
-# - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
+ - bash install-woff2.sh
+ - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
 # - cabal install webify
 cache:
   directories:
    - $HOME/pngquant-2.5.0
-   - $HOME/ttf2woff
+   - $TRAVIS_BUILD_DIR/ttf2woff
 addons:
   apt:
     sources:
@@ -32,4 +30,9 @@ addons:
     - libsox-fmt-all
     - ffmpeg
     - optipng
-    - pngquant
+    - g++
+
+#TODO(xha): reste
+# webify (ou utiliser ttf2woff mais alors il faut aussi rajouter une version windows)
+# zopflipng
+# texturepacker
