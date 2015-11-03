@@ -29,7 +29,7 @@ addons:
     - ffmpeg
     - optipng
     - fontforge
-    - g++
+    - g++-4.8
 
 #TODO(xha): reste
 # webify (ou utiliser ttf2woff mais alors il faut aussi rajouter une version windows)
