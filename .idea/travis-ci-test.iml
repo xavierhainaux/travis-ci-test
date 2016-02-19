@@ -4,7 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/packages/travis-ci-test" />
+      <excludeFolder url="file://$MODULE_DIR$/project1/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/project1/packages/project1" />
+      <excludeFolder url="file://$MODULE_DIR$/project1/test/audio/packages" />
       <excludeFolder url="file://$MODULE_DIR$/project1/test/packages" />
       <excludeFolder url="file://$MODULE_DIR$/project1/web/packages" />
       <excludeFolder url="file://$MODULE_DIR$/test/packages" />
