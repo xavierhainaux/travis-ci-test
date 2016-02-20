@@ -3,7 +3,8 @@ dart: stable
 sudo: false
 env:
   global:
-  - CXX=g++-4.8
+  - CXX=clang++
+  - CC=clang
 #before_install:
 #  - sudo apt-get update -qq
 #  - sudo apt-get install -y imagemagick
