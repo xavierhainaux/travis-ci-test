@@ -3,12 +3,9 @@ import 'package:test/test.dart';
 import 'package:project1/image_magick.dart' as im;
 import 'package:project1/sox.dart' as sox;
 
-const String s3AccessKey = 'AKIAJYXM3I5BMCT3DAWA';
-const String s3PrivateKey = 'IzeRZBbn23MkVBHtvVX5hcFHp7Sr3y3tn0HXCGQu';
-
 final awsEnvVariables = {
-  'AWS_ACCESS_KEY_ID': s3AccessKey,
-  'AWS_SECRET_ACCESS_KEY': s3PrivateKey
+  'AWS_ACCESS_KEY_ID': Platform.environment['AWS_ACCESS_KEY_ID'],
+  'AWS_SECRET_ACCESS_KEY': Platform.environment['AWS_SECRET_ACCESS_KEY']
 };
 
 _copyToS3(String from, String to) async {
