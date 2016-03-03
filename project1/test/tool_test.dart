@@ -48,7 +48,7 @@ main() {
 
     new Directory('lib/mojo').create(recursive: true);
     ProcessResult result = await Process
-        .run('ffmpeg', ['-i', 'lib/mojo_explode.mov', 'lib/mojo/%3d.png']);
+        .run('ffmpeg', ['-i', 'lib/mojo_explode.mov', '-pix_fmt', 'rgb32', 'lib/mojo/%3d.png']);
     print('stdout: ${result.stdout}');
     print('stderr: ${result.stderr}');
 
