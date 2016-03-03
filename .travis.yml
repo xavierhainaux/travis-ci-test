@@ -3,8 +3,8 @@ dart: stable
 sudo: false
 env:
   global:
-  - CXX=clang++
-  - CC=clang
+#  - CXX=clang++
+#  - CC=clang
 #before_install:
 #  - sudo apt-get update -qq
 #  - sudo apt-get install -y imagemagick
@@ -13,8 +13,8 @@ install:
  - pip install --user awscli
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
- - bash install-woff2.sh
- - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
+# - bash install-woff2.sh
+# - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
 # - cabal install webify
 cache:
   directories:
@@ -32,7 +32,7 @@ addons:
     - ffmpeg
     - optipng
     - fontforge
-    - g++-4.8
+#    - g++-4.8
 
 #TODO(xha): reste
 # webify (ou utiliser ttf2woff mais alors il faut aussi rajouter une version windows)
