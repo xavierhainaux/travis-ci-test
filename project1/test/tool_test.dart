@@ -42,12 +42,17 @@ main() {
   });
 
   test('ffmpeg', () async {
+    ProcessResult versionResult = await Process.run('ffmpeg', ['--version']);
+    print('version ${versionResult.stdout}');
+    print('version ${versionResult.stderr}');
+
     new Directory('lib/mojo').create(recursive: true);
     ProcessResult result = await Process
-        .run('ffmpeg', ['-i', 'lib/mojo_explode.mov', 'mojo/%3d.png']);
+        .run('ffmpeg', ['-i', 'lib/mojo_explode.mov', 'lib/mojo/%3d.png']);
     print('stdout: ${result.stdout}');
     print('stderr: ${result.stderr}');
 
+    print('copy to s3');
     await _copyToS3('lib/mojo', 's3://gaming1-html5/playground/mojo');
   });
 
