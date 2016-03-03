@@ -10,6 +10,7 @@ env:
 #  - sudo apt-get install -y imagemagick
 script: "dart build_script.dart"
 install:
+ - pip install --user awscli
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
  - bash install-woff2.sh

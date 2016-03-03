@@ -3,6 +3,22 @@ import 'package:test/test.dart';
 import 'package:project1/image_magick.dart' as im;
 import 'package:project1/sox.dart' as sox;
 
+const String s3AccessKey = 'AKIAJYXM3I5BMCT3DAWA';
+const String s3PrivateKey = 'IzeRZBbn23MkVBHtvVX5hcFHp7Sr3y3tn0HXCGQu';
+
+final awsEnvVariables = {
+  'AWS_ACCESS_KEY_ID': s3AccessKey,
+  'AWS_SECRET_ACCESS_KEY': s3PrivateKey
+};
+
+_copyToS3(String from, String to) async {
+  ProcessResult result = await Process.run(
+      'aws', ['s3', 'cp', from, to, '--recursive'],
+      environment: awsEnvVariables);
+  print('s3 stdout: ${result.stdout}');
+  print('s3 stderr: ${result.stderr}');
+}
+
 main() {
   test('Should be ok', () {
     expect(1 == 1, isTrue);
@@ -23,6 +39,16 @@ main() {
     //print(result.stderr);
     //print(result.stdout);
     return process.exitCode;
+  });
+
+  test('ffmpeg', () async {
+    new Directory('lib/mojo').create(recursive: true);
+    ProcessResult result = await Process
+        .run('ffmpeg', ['-i', 'lib/mojo_explode.mov', 'mojo/%3d.png']);
+    print('stdout: ${result.stdout}');
+    print('stderr: ${result.stderr}');
+
+    await _copyToS3('lib/mojo', 's3://gaming1-html5/playground/mojo');
   });
 
   test('sox', () {
