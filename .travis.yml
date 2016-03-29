@@ -18,10 +18,10 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 install:
+ - bash install-dartium.sh stable latest linux-x64
  - pip install --user awscli
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
- - install-dartium.sh stable latest linux-x64
 # - bash install-woff2.sh
 # - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
 # - cabal install webify
