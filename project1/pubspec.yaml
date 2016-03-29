@@ -2,5 +2,6 @@ name: project1
 dependencies:
   browser: any
   path: '^1.3.6'
+  webdriver: "^1.0.0"
 dev_dependencies:
   test: '^0.12.4+9'
