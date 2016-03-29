@@ -15,9 +15,10 @@ main() async {
   Directory.current = originalDirectory;
 }
 
-_runProcess(String directory, String processName, List args) {
-  Directory.current = directory;
-  return Process.start(processName, args).then((Process process) {
+_runProcess(String directory, String processName, List args) async {
+  return Process
+      .start(processName, args, workingDirectory: directory)
+      .then((Process process) {
     stdout.addStream(process.stdout);
     stderr.addStream(process.stderr);
 
