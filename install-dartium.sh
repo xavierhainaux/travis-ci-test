@@ -23,6 +23,6 @@ download_and_unzip $DARTIUM_URL
 
 echo Fetched new dart version $(<dart-sdk/version)
 
-if [[ -n $DARTIUM_URL ]]; then
-  mv dartium-* chromium
-fi
+#if [[ -n $DARTIUM_URL ]]; then
+#  mv dartium-* chromium
+#fi
