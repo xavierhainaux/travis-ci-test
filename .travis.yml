@@ -19,6 +19,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 install:
  - bash install-dartium.sh stable latest linux-x64
+ - export PATH=$PATH:$HOME/dartium
+ - export DARTIUM_BIN=$HOME/dartium/dartium
  - pip install --user awscli
  - bash install-pngquant.sh
  - export PATH=$PATH:$HOME/pngquant-2.5.0/bin
