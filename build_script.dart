@@ -68,7 +68,7 @@ debugInfos() {
 
   for (FileSystemEntity f in new Directory(Platform.environment['HOME'])
       .listSync(recursive: true, followLinks: false)) {
-    if (!f.path.contains('dartium')) {
+    if (f.path.contains('dartium')) {
       print('${f.path}');
     }
   }
