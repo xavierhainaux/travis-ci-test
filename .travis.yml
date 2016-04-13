@@ -43,6 +43,7 @@ addons:
     - ffmpeg
     - optipng
     - fontforge
+    - chromium-browser
 #    - g++-4.8
 
 #TODO(xha): reste
