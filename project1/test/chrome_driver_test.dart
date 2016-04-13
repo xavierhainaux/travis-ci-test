@@ -10,8 +10,13 @@ main() {
   test('Start webdriver and take capture with chrome', () async {
     Process chromeDriver = await _startChromeDriver(4446);
 
+    Map capabilities = Capabilities.chrome;
+    capabilities['chromeOptions'] = {
+      'binary': 'chromium'
+    };
+
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri);
+    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
 
     await webDriver.get('https://www.google.com');
 
@@ -46,7 +51,6 @@ main() {
 Future<Process> _startChromeDriver(int port) async {
   Process browser = await Process
       .start('chromedriver', ['--port=$port', '--url-base=wd/hub']);
-  print(browser.stderr);
 
   await for (String browserOut
       in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
