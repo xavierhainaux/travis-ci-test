@@ -10,13 +10,8 @@ main() {
   test('Start webdriver and take capture with chrome', () async {
     Process chromeDriver = await _startChromeDriver(4446);
 
-    Map capabilities = Capabilities.chrome;
-    capabilities['chromeOptions'] = {
-      'binary': Platform.environment['CHROME_BIN']
-    };
-
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
+    WebDriver webDriver = await createDriver(uri: wdUri);
 
     await webDriver.get('https://www.google.com');
 
