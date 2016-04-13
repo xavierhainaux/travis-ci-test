@@ -8,8 +8,7 @@ main() async {
   pubGetAll();
   print('build script');
 
-  await _runProcess('project1', 'pub', ['run', 'test']);
-  await _runProcess('project1', 'pub', ['run', 'test', '-p', 'dartium,chrome']);
+  await _runProcess('project1', 'pub', ['run', 'test', '-p', 'vm,dartium,chrome']);
   Directory.current = originalDirectory;
   await _runProcess('project1', 'dartanalyzer', ['lib/image_magick.dart']);
   Directory.current = originalDirectory;
