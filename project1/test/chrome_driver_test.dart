@@ -7,8 +7,8 @@ import 'package:webdriver/io.dart';
 
 main() {
 
-  test('Start webdriver and take capture', () async {
-    await _startChromeDriver(4444);
+  test('Start webdriver and take capture in Dartium', () async {
+    Process chromeDriver = await _startChromeDriver(4444);
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {
@@ -21,7 +21,27 @@ main() {
     await webDriver.get('https://www.google.com');
 
     List screenshot = await webDriver.captureScreenshot().toList();
-    print(BASE64.encode(screenshot));
+    print('Dartium ok ${screenshot.length}');
+
+    await webDriver.close();
+    chromeDriver.kill();
+  });
+
+  test('Start webdriver and take capture with chrome', () async {
+    Process chromeDriver = await _startChromeDriver(4444);
+
+    await _startChromeDriver(4444);
+
+    Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
+    WebDriver webDriver = await createDriver(uri: wdUri);
+
+    await webDriver.get('https://www.google.com');
+
+    List screenshot = await webDriver.captureScreenshot().toList();
+    print('Chrome ok ${screenshot.length}');
+
+    await webDriver.close();
+    chromeDriver.kill();
   });
 }
 
