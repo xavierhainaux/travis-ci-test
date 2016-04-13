@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:test/test.dart';
 import 'package:webdriver/io.dart';
+import 'package:which/which.dart';
 
 main() {
 
@@ -12,7 +13,7 @@ main() {
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {
-      'binary': 'chromium'
+      'binary': whichSync('chromium')
     };
 
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
@@ -59,5 +60,6 @@ Future<Process> _startChromeDriver(int port) async {
       break;
     }
   }
+  await new Future.delayed(const Duration(milliseconds: 1000));
   return browser;
 }
