@@ -13,7 +13,7 @@ main() {
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {
-      'binary': whichSync('chromium')
+      'binary': whichSync('chrome')
     };
 
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
