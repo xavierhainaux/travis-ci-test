@@ -32,8 +32,14 @@ main() {
 
     await _startChromeDriver(4444);
 
+    Map capabilities = Capabilities.chrome;
+    capabilities['chromeOptions'] = {
+      'binary': Platform.environment['CHROME_BIN']
+    };
+
     Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri);
+    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
+
 
     await webDriver.get('https://www.google.com');
 
