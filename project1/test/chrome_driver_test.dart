@@ -7,22 +7,22 @@ import 'package:webdriver/io.dart';
 import 'package:which/which.dart';
 
 main() {
-
   test('Start webdriver and take capture with chrome', () async {
     Process chromeDriver = await _startChromeDriver(4446);
 
     Map capabilities = Capabilities.chrome;
-    capabilities['chromeOptions'] = {
-      'binary': whichSync('chrome')
-    };
+    capabilities['chromeOptions'] = {'binary': whichSync('chrome')};
 
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
 
     await webDriver.get('https://www.google.com');
 
+    String ua = await webDriver
+        .execute("return window.navigator.userAgent;", []);
+
     List screenshot = await webDriver.captureScreenshot().toList();
-    print('Chrome ok ${screenshot.length}');
+    print('Chrome ok ${screenshot.length} $ua');
 
     await webDriver.close();
     chromeDriver.kill();
