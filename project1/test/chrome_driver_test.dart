@@ -11,6 +11,8 @@ main() {
     print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
     print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
     print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
+    print('chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
+    print('google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
 
     Process chromeDriver = await _startChromeDriver(4446);
 
