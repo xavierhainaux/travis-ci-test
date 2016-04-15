@@ -23,7 +23,7 @@ install:
 # - bash install-woff2.sh
 # - export PATH=$PATH:$TRAVIS_BUILD_DIR/woff2
 # - cabal install webify
- - wget http://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
+ - wget http://chromedriver.storage.googleapis.com/2.21/chromedriver_linux64.zip
  - unzip chromedriver_linux64.zip
  - export PATH=$PATH:$PWD
 cache:
