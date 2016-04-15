@@ -17,7 +17,7 @@ main() {
     Process chromeDriver = await _startChromeDriver(4446);
 
     Map capabilities = Capabilities.chrome;
-    capabilities['chromeOptions'] = {'binary': whichSync('chrome')};
+    capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
 
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
