@@ -8,6 +8,10 @@ import 'package:which/which.dart';
 
 main() {
   test('Start webdriver and take capture with chrome', () async {
+    print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
+    print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
+    print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
+
     Process chromeDriver = await _startChromeDriver(4446);
 
     Map capabilities = Capabilities.chrome;
@@ -18,8 +22,8 @@ main() {
 
     await webDriver.get('https://www.google.com');
 
-    String ua = await webDriver
-        .execute("return window.navigator.userAgent;", []);
+    String ua =
+        await webDriver.execute("return window.navigator.userAgent;", []);
 
     List screenshot = await webDriver.captureScreenshot().toList();
     print('Chrome ok ${screenshot.length} $ua');
