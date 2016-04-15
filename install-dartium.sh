@@ -25,5 +25,5 @@ echo Fetched new dart version $(<dart-sdk/version)
 
 if [[ -n $DARTIUM_URL ]]; then
   mv dartium-* $HOME/dartium
-  cp $HOME/dartium/chrome $HOME/dartium/dartium
+  mv $HOME/dartium/chrome $HOME/dartium/dartium
 fi
