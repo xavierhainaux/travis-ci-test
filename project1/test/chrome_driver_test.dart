@@ -34,6 +34,7 @@ main() {
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
+    capabilities['arguments'] = ['--no-sandbox'];
 
     Uri wdUri = Uri.parse('http://localhost:4448/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
