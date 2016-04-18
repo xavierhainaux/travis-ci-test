@@ -34,6 +34,7 @@ cache:
 addons:
   apt:
     sources:
+    - google-chrome
     - deadsnakes
     - ubuntu-toolchain-r-test
     packages:
