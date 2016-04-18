@@ -28,18 +28,10 @@ main() {
   });
 
   test('Start webdriver and take capture with Chrome', () async {
-    print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
-    print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
-    print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
-    print(
-        'chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
-    print(
-        'google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
-
-    Process chromeDriver = await _startSelenium(4448);
+    Process chromeDriver = await _startChromeDriver(4448);
 
     Map capabilities = Capabilities.chrome;
-    capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
+    capabilities['chromeOptions'] = {'binary': 'chromium-browser'};
 
     Uri wdUri = Uri.parse('http://localhost:4448/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
@@ -106,7 +98,7 @@ Future<Process> _startSelenium(int port) async {
       break;
     }
   }
-  await new Future.delayed(const Duration(milliseconds: 1000));
+  await new Future.delayed(const Duration(milliseconds: 3000));
   return browser;
 }
 
