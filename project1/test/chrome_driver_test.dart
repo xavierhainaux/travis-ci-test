@@ -14,13 +14,13 @@ main() {
     print('chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
     print('google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
 
-    Process chromeDriver = await _startChromeDriver(4446);
+    //Process chromeDriver = await _startChromeDriver(4446);
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
 
-    Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
+    Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
+    WebDriver webDriver = await createDriver(uri: wdUri/*, desired: capabilities*/);
 
     await webDriver.get('https://www.google.com');
 
@@ -28,22 +28,22 @@ main() {
         await webDriver.execute("return window.navigator.userAgent;", []);
 
     List screenshot = await webDriver.captureScreenshot().toList();
-    print('Chrome ok ${screenshot.length} $ua');
+    print('Selenium ok ${screenshot.length} $ua');
 
     await webDriver.close();
-    chromeDriver.kill();
+    //chromeDriver.kill();
   });
 
   test('Start webdriver and take capture in Dartium', () async {
-    Process chromeDriver = await _startChromeDriver(4444);
+    Process chromeDriver = await _startChromeDriver(4446);
 
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {
       'binary': Platform.environment['DARTIUM_BIN']
     };
 
-    Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
+    Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
+    WebDriver webDriver = await createDriver(uri: wdUri/*, desired: capabilities*/);
 
     await webDriver.get('https://www.google.com');
 
@@ -51,7 +51,7 @@ main() {
     print('Dartium ok ${screenshot.length}');
 
     await webDriver.close();
-    chromeDriver.kill();
+    //chromeDriver.kill();
   });
 }
 
