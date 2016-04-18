@@ -35,6 +35,7 @@ addons:
     sources:
     - deadsnakes
     - ubuntu-toolchain-r-test
+    - google-chrome
     packages:
     - imagemagick
     - sox
@@ -43,6 +44,7 @@ addons:
     - optipng
     - fontforge
     - chromium-browser
+    - google-chrome-stable
 #    - g++-4.8
 
 #TODO(xha): reste
