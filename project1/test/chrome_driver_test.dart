@@ -30,6 +30,8 @@ main() {
   test('Start webdriver and take capture with Chrome', () async {
     Process chromeDriver = await _startChromeDriver(4448);
 
+    print('Chromium: ${Process.runSync('chromium-browser', ['--version']).stdout}');
+
     Map capabilities = Capabilities.chrome;
     capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
 
