@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:test/test.dart';
 import 'package:webdriver/io.dart';
 import 'package:which/which.dart';
+import 'package:path/path.dart' as p;
 
 main() {
   test('Start webdriver and take capture with firefox', () async {
@@ -93,7 +94,7 @@ Future<Process> _startChromeDriver(int port) async {
 
 Future<Process> _startSelenium(int port) async {
   Process browser =
-      await Process.start('java', ['-jar', 'selenium.jar', '-port=$port']);
+      await Process.start('java', ['-jar', p.join(Platform.environment['HOME'], 'selenium.jar'), '-port=$port']);
 
   print('Selenium started');
   _logError(browser);
