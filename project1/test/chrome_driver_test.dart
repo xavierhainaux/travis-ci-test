@@ -8,21 +8,9 @@ import 'package:which/which.dart';
 
 main() {
   test('Start webdriver and take capture with firefox', () async {
-    print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
-    print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
-    print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
-    print(
-        'chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
-    print(
-        'google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
-
-    Process chromeDriver = await _startSelenium(4444);
+    Process selenium = await _startSelenium(4444);
 
     Map capabilities = Capabilities.firefox;
-
-    //Map capabilities = Capabilities.chrome;
-    //capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
-
     Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
 
@@ -32,7 +20,36 @@ main() {
         await webDriver.execute("return window.navigator.userAgent;", []);
 
     List screenshot = await webDriver.captureScreenshot().toList();
-    print('Selenium ok ${screenshot.length} $ua');
+    print('Firefox ok ${screenshot.length} $ua');
+
+    await webDriver.close();
+    selenium.kill();
+  });
+
+  test('Start webdriver and take capture with Chrome', () async {
+    print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
+    print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
+    print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
+    print(
+        'chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
+    print(
+        'google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
+
+    Process chromeDriver = await _startSelenium(4448);
+
+    Map capabilities = Capabilities.chrome;
+    capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
+
+    Uri wdUri = Uri.parse('http://localhost:4448/wd/hub/');
+    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
+
+    await webDriver.get('https://www.google.com');
+
+    String ua =
+        await webDriver.execute("return window.navigator.userAgent;", []);
+
+    List screenshot = await webDriver.captureScreenshot().toList();
+    print('Chrome ok ${screenshot.length} $ua');
 
     await webDriver.close();
     chromeDriver.kill();
@@ -78,6 +95,9 @@ Future<Process> _startSelenium(int port) async {
   Process browser =
       await Process.start('java', ['-jar', 'selenium.jar', '-port=$port']);
 
+  print('Selenium started');
+  _logError(browser);
+
   await for (String browserOut
       in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
     print('browser $browserOut');
@@ -87,4 +107,11 @@ Future<Process> _startSelenium(int port) async {
   }
   await new Future.delayed(const Duration(milliseconds: 1000));
   return browser;
+}
+
+_logError(Process process) async {
+  await for (String browserOut
+      in UTF8.decoder.fuse(const LineSplitter()).bind(process.stderr)) {
+    print('Error: $browserOut');
+  }
 }
