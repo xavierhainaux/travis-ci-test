@@ -7,17 +7,17 @@ import 'package:webdriver/io.dart';
 import 'package:which/which.dart';
 
 main() {
-  test('Start webdriver and take capture with chrome', () async {
+  test('Start webdriver and take capture with firefox', () async {
     print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
     print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
     print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
     print('chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
     print('google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
 
-    //Process chromeDriver = await _startChromeDriver(4446);
+    Process chromeDriver = await _startSelenium(4446);
 
-    Map capabilities = Capabilities.chrome;
-    capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
+    //Map capabilities = Capabilities.chrome;
+    //capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
 
     Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
     WebDriver webDriver = await createDriver(uri: wdUri/*, desired: capabilities*/);
@@ -31,7 +31,7 @@ main() {
     print('Selenium ok ${screenshot.length} $ua');
 
     await webDriver.close();
-    //chromeDriver.kill();
+    chromeDriver.kill();
   });
 
   test('Start webdriver and take capture in Dartium', () async {
@@ -43,7 +43,7 @@ main() {
     };
 
     Uri wdUri = Uri.parse('http://localhost:4446/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri/*, desired: capabilities*/);
+    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
 
     await webDriver.get('https://www.google.com');
 
@@ -51,7 +51,7 @@ main() {
     print('Dartium ok ${screenshot.length}');
 
     await webDriver.close();
-    //chromeDriver.kill();
+    chromeDriver.kill();
   });
 }
 
@@ -63,6 +63,21 @@ Future<Process> _startChromeDriver(int port) async {
       in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
     print('browser $browserOut');
     if (browserOut.contains('Starting ChromeDriver')) {
+      break;
+    }
+  }
+  await new Future.delayed(const Duration(milliseconds: 1000));
+  return browser;
+}
+
+Future<Process> _startSelenium(int port) async {
+  Process browser = await Process
+      .start('java', ['-jar', 'selenium.jar', '-port=$port']);
+
+  await for (String browserOut
+  in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
+    print('browser $browserOut');
+    if (browserOut.contains('Started')) {
       break;
     }
   }

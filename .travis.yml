@@ -26,8 +26,7 @@ install:
  - wget http://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
  - unzip chromedriver_linux64.zip
  - export PATH=$PATH:$PWD
- - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
- - java -jar selenium-server-standalone-2.39.0.jar -port 4444
+ - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar -O selenium.jar
 cache:
   directories:
    - $HOME/pngquant-2.5.0
@@ -37,7 +36,6 @@ addons:
     sources:
     - deadsnakes
     - ubuntu-toolchain-r-test
-    - google-chrome
     packages:
     - imagemagick
     - sox
@@ -46,7 +44,6 @@ addons:
     - optipng
     - fontforge
     - chromium-browser
-    - google-chrome-stable
 #    - g++-4.8
 
 #TODO(xha): reste
