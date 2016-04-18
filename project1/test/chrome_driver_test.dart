@@ -11,16 +11,20 @@ main() {
     print('chrome ${whichSync('chrome', orElse: () => 'not found')}');
     print('dartium ${whichSync('dartium', orElse: () => 'not found')}');
     print('chromium ${whichSync('chromium', orElse: () => 'not found')}');
-    print('chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
-    print('google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
+    print(
+        'chromium-browser ${whichSync('chromium-browser', orElse: () => 'not found')}');
+    print(
+        'google-chrome ${whichSync('google-chrome', orElse: () => 'not found')}');
 
-    Process chromeDriver = await _startSelenium(4446);
+    Process chromeDriver = await _startSelenium(4444);
+
+    Map capabilities = Capabilities.firefox;
 
     //Map capabilities = Capabilities.chrome;
     //capabilities['chromeOptions'] = {'binary': whichSync('chromium-browser')};
 
     Uri wdUri = Uri.parse('http://localhost:4444/wd/hub/');
-    WebDriver webDriver = await createDriver(uri: wdUri/*, desired: capabilities*/);
+    WebDriver webDriver = await createDriver(uri: wdUri, desired: capabilities);
 
     await webDriver.get('https://www.google.com');
 
@@ -71,11 +75,11 @@ Future<Process> _startChromeDriver(int port) async {
 }
 
 Future<Process> _startSelenium(int port) async {
-  Process browser = await Process
-      .start('java', ['-jar', 'selenium.jar', '-port=$port']);
+  Process browser =
+      await Process.start('java', ['-jar', 'selenium.jar', '-port=$port']);
 
   await for (String browserOut
-  in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
+      in UTF8.decoder.fuse(const LineSplitter()).bind(browser.stdout)) {
     print('browser $browserOut');
     if (browserOut.contains('Started')) {
       break;
